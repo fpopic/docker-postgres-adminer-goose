@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  
+  postgres:
+    image: postgres:9.6
+    container_name: poc-migrations-postgres # this will be adminer server
+    environment:
+      - POSTGRES_USER=goose
+      - POSTGRES_PASSWORD=goose
+      - POSTGRES_DB=goose
+      - PGDATA=/pgdata
+    ports:
+      - 5432:5432
+  
+  adminer:
+    image: adminer
+    container_name: poc-migrations-adminer
+    restart: always
+    ports:
+      - 8080:8080
+  
+  goose:
+    build:
+      context: .
+    user: 1000:1000
+    container_name: poc-migrations-goose
+    depends_on:
+      - postgres
+    environment:
+      - DB_HOST=poc-migrations-postgres
+      - DB_PORT=5432
+      - DB_NAME=goose
+      - DB_USER=goose
+      - DB_PASSWORD=goose
+      - DB_SSL_MODE=disable #{disable, require (default), verify-full}
+    volumes:
+    - ./migrations:/opt/go/app/db/migrations:rw
