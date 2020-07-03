@@ -17,5 +17,8 @@ Used:
 
 3. Run goose:
     ```shell script
-    docker-compose run goose create add_schema sql
+    docker-compose run goose status
+    docker-compose run goose create <name_of_migration> sql
+    # edit migrations/<name_of_migration>.sql
+    docker-compose run goose up
     ```
