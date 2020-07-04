@@ -1,4 +1,4 @@
-# docker-postgres-adminer-poc
+# docker-postgres-adminer-goose
 
 Used:
 - [goose](https://bitbucket.org/liamstask/goose/)
