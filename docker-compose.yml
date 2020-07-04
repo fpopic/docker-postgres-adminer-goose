@@ -36,4 +36,4 @@ services:
       - DB_PASSWORD=goose
       - DB_SSL_MODE=disable #{disable, require (default), verify-full}
     volumes:
-      - ./migrations:/app/db/migrations:rw
+      - ./db/migrations:/app/db/migrations:rw
