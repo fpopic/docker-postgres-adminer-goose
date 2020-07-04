@@ -2,7 +2,6 @@
 
 Used:
 - [goose](https://bitbucket.org/liamstask/goose/)
-- [dockerzied goose](https://github.com/shopkeep/goose/)
 
 1. Clone the repository
     ```shell script

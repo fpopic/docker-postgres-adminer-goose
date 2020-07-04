@@ -10,4 +10,3 @@ COPY ./db/migrations /app/db/migrations
 
 ENTRYPOINT ["/go/bin/goose", "-env=default"]
 CMD ["up"]
-
