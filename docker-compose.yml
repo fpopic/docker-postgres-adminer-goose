@@ -13,7 +13,7 @@ services:
       - 5432:5432
   
   adminer:
-    image: adminer
+   image: adminer:4.7
     container_name: migrations-adminer
     restart: always
     depends_on:
@@ -35,6 +35,6 @@ services:
       - DB_NAME=goose
       - DB_USER=goose
       - DB_PASSWORD=goose
-      - DB_SSL_MODE=disable #{disable, require (default), verify-full}
+      - DB_SSL_MODE=disable # {disable, require (default), verify-full}
     volumes:
       - ./db/migrations:/app/db/migrations:rw
