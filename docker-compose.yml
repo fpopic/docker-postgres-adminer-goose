@@ -3,7 +3,7 @@ services:
   
   postgres:
     image: postgres:9.6
-    container_name: migrations-postgres # this will be adminer server
+    container_name: migrations-postgres # this will be the adminer server
     environment:
       - POSTGRES_USER=goose
       - POSTGRES_PASSWORD=goose
@@ -22,9 +22,10 @@ services:
       - 8080:8080
     
   goose:
+    image: fpopic/goose:1.0
     build:
       context: .
-    user: 1000:1000
+    user: 1000:1000 # put your non-root user's uid:gid (run cmd `id`)
     container_name: migrations-goose
     depends_on:
       - postgres

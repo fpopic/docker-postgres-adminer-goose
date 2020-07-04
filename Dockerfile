@@ -1,6 +1,5 @@
-FROM golang:latest
+FROM golang:1.14
 
-# This will install the goose binary to your $GOPATH/bin directory.
 RUN go get -v 'bitbucket.org/liamstask/goose/cmd/goose'
 
 WORKDIR /app

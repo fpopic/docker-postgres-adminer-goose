@@ -18,6 +18,11 @@ Used:
     ```shell script
     docker-compose run goose status
     docker-compose run goose create <name_of_migration> sql
-    # edit migrations/<name_of_migration>.sql
+    # edit db/migrations/<name_of_migration>.sql
     docker-compose run goose up
     ```
+
+4. Check changes in adminer:
+  ```shell script
+  open 'http://localhost:8080/?pgsql=migrations-postgres&username=goose&db=goose&ns=public'
+  ```
