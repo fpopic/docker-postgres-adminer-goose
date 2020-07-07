@@ -1,7 +1,7 @@
 # docker-postgres-adminer-goose
 
 Used:
-- [goose](https://bitbucket.org/liamstask/goose/)
+- [goose](https://github.com/pressly/goose)
 
 Steps:
 1. Clone the repository
@@ -10,12 +10,17 @@ Steps:
     cd docker-postgres-adminer-goose
     ```
 
-2. Spin up composed services: `postgres`, `adminer`, `goose` with entrypoint: `/go/bin/goose -env=default up`
+1. Spin up composed services: `postgres`, `adminer`, `goose` with entrypoint: `/go/bin/goose -env=default up`
     ```shell script
     docker-compose up --build
     ```
+   On the first run `goose` should fail with `goose run: failed to ensure DB version: pq: database "goose" does not exist`.
+   In a new shell connect to the container and create postgres db instance (goose can't change db's inside migrations using `\c dbname`) 
+   ```shell script
+   docker-compose exec postgres psql 'postgres://goose:goose@migrations-postgres:5432/?sslmode=disable' -c "CREATE DATABASE goose;"
+   ```
 
-3. Run goose standalone:
+1. Run goose standalone:
     ```shell script
     docker-compose run goose status
     docker-compose run goose create <name_of_migration> sql
@@ -23,7 +28,7 @@ Steps:
     docker-compose run goose up
     ```
 
-4. Check changes in adminer:
+1. Check changes in adminer:
     ```shell script
     open 'http://localhost:8080/?pgsql=migrations-postgres&username=goose&db=goose&ns=public'
     ```

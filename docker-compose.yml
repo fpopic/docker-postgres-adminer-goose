@@ -30,11 +30,8 @@ services:
     depends_on:
       - postgres
     environment:
-      - DB_HOST=migrations-postgres
-      - DB_PORT=5432
-      - DB_NAME=goose
-      - DB_USER=goose
-      - DB_PASSWORD=goose
-      - DB_SSL_MODE=disable # {disable, require (default), verify-full}
+      - GOOSE_DRIVER=postgres
+      # e.g. postgres://{user}:{password}@{hostname}:{port}/{database-name}
+      - GOOSE_DBSTRING=postgres://goose:goose@migrations-postgres:5432/goose1?sslmode=disable
     volumes:
       - ./db/migrations:/app/db/migrations:rw
