@@ -32,6 +32,6 @@ services:
     environment:
       - GOOSE_DRIVER=postgres
       # e.g. postgres://{user}:{password}@{hostname}:{port}/{database-name}
-      - GOOSE_DBSTRING=postgres://goose:goose@migrations-postgres:5432/goose1?sslmode=disable
+      - GOOSE_DBSTRING=postgres://goose:goose@migrations-postgres:5432/goose?sslmode=disable
     volumes:
       - ./db/migrations:/app/db/migrations:rw
