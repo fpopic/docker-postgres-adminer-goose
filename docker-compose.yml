@@ -1,6 +1,6 @@
-version: '3.7'
+version: '2.1'
 services:
-  
+
   postgres:
     image: postgres:9.6
     container_name: migrations-postgres # this will be the adminer server
@@ -11,16 +11,22 @@ services:
       - PGDATA=/pgdata
     ports:
       - 5432:5432
-  
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   adminer:
     image: adminer:4.7
     container_name: migrations-adminer
     restart: always
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     ports:
       - 8080:8080
-    
+
   goose:
     image: fpopic/goose:1.0
     build:
@@ -28,7 +34,8 @@ services:
     user: 1000:1000 # put your non-root user's uid:gid (run cmd `id`)
     container_name: migrations-goose
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       - GOOSE_DRIVER=postgres
       # e.g. postgres://{user}:{password}@{hostname}:{port}/{database-name}

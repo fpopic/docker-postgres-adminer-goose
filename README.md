@@ -14,11 +14,6 @@ Steps:
     ```shell script
     docker-compose up --build
     ```
-   On the first run `goose` should fail with `goose run: failed to ensure DB version: pq: database "goose" does not exist`.
-   In a new shell connect to the container and create postgres db instance (goose can't change db's inside migrations using `\c dbname`) 
-   ```shell script
-   docker-compose exec postgres psql 'postgres://goose:goose@migrations-postgres:5432/?sslmode=disable' -c "CREATE DATABASE goose;"
-   ```
 
 1. Run goose standalone:
     ```shell script
