@@ -20,7 +20,6 @@ services:
   adminer:
     image: adminer:4.7
     container_name: migrations-adminer
-    restart: always
     depends_on:
       postgres:
         condition: service_healthy
