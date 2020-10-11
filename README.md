@@ -10,7 +10,7 @@ Steps:
     cd docker-postgres-adminer-goose
     ```
 
-1. Spin up composed services: `postgres`, `adminer`, `goose` with entrypoint: `/go/bin/goose -env=default up`
+1. Spin up composed services: `postgres`, `adminer`, `goose` with Dockerfile entrypoint
     ```shell script
     docker-compose up --build
     ```
