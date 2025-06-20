@@ -1,5 +1,8 @@
 # docker-postgres-adminer-goose
 
+Dockerized example of how to set up db-migrations using goose that could be used by humans or machines (CI).
+Adminer was added so the user can explore db-migrations internal log.
+
 Used:
 - [goose](https://github.com/pressly/goose)
 
